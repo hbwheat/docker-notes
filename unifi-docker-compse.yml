@@ -1,0 +1,28 @@
+version: '3.3' 
+services: 
+ 
+  unifi: 
+    container_name: unifi 
+    hostname: unifi-docker 
+    image: jacobalberty/unifi:latest 
+    network_mode: "bridge" 
+    dns: 
+      - 172.17.0.2 
+      - 9.9.9.9 
+    healthcheck: 
+      disable: "true" 
+    ports: 
+      - "8080:8080" 
+      - "8443:8443" 
+      - "8843:8843" 
+      - "3478:3478/udp" 
+      - "10001:10001/udp" 
+      - "6789:6789" 
+      - "465:465" 
+      - "587:587" 
+    restart: unless-stopped 
+    environment: 
+      - TZ=America\New_York 
+     #- RUNAS_UID0="false" 
+    volumes: 
+      - ~/unifi:/unifi 
