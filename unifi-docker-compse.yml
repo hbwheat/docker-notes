@@ -20,6 +20,8 @@ services:
       - "6789:6789" 
       - "465:465" 
       - "587:587" 
+      - "1900:1900/udp"
+      - "8883:8883"
     restart: unless-stopped 
     environment: 
       - TZ=America\New_York 
