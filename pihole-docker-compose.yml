@@ -1,0 +1,25 @@
+version: '3.3' 
+services: 
+ 
+  pihole: 
+    container_name: pihole 
+    hostname: pihole-docker 
+    image: pihole/pihole:latest
+    network_mode: "bridge" 
+    dns: 
+      - 172.17.0.2 
+      - 127.0.0.1
+      - 9.9.9.9 
+    healthcheck: 
+      disable: "false" 
+    ports: 
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "67:67"
+      - "80/80"
+    restart: unless-stopped 
+    environment: 
+      - ServerIP=10.0.0.8
+    volumes: 
+      - /home/wheat/pihole/:/etc/pihole/
+      - /home/wheat/pihole/dnsmasq.d/:/etc/dnsmasq.d/
