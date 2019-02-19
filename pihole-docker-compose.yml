@@ -18,8 +18,11 @@ services:
       - "67:67"
       - "80/80"
     restart: unless-stopped 
+    cap-add:
+    - NET_ADMIN
     environment: 
       - ServerIP=10.0.0.8
+      - WEBPASSWORD='' 
     volumes: 
       - /home/wheat/pihole/:/etc/pihole/
       - /home/wheat/pihole/dnsmasq.d/:/etc/dnsmasq.d/
